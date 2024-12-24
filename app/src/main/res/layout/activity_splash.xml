@@ -1,41 +1,14 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white">
+    android:background="@drawable/splash_gradient"> <!-- Gradient background -->
 
     <!-- Logo -->
     <ImageView
-        android:id="@+id/logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:src="@drawable/logo1"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp" />
-
-    <!-- App Name -->
-    <TextView
-        android:id="@+id/app_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Attendify"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        android:layout_below="@id/logo"
-        android:layout_marginTop="20dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/black" />
-
-    <!-- Tagline -->
-    <TextView
-        android:id="@+id/tagline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Smart Attendance, Seamless Tracking."
-        android:textSize="16sp"
-        android:layout_below="@id/app_name"
-        android:layout_marginTop="10dp"
-        android:layout_centerHorizontal="true"
-        android:textColor="@color/gray" />
-
+        android:id="@+id/logoImage"
+        android:layout_width="282dp"
+        android:layout_height="282dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo1" />
 </RelativeLayout>

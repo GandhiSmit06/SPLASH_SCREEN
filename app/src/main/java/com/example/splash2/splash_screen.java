@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -17,25 +16,49 @@ public class splash_screen extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        // Initialize views
-        ImageView logo = findViewById(R.id.logo);
-        TextView appName = findViewById(R.id.app_name);
-        TextView tagline = findViewById(R.id.tagline);
+        // Initialize logo
+        ImageView logoImage = findViewById(R.id.logoImage);
 
         // Load animations
         Animation fadeIn = AnimationUtils.loadAnimation(this, R.anim.fade_in);
-        Animation zoomIn = AnimationUtils.loadAnimation(this, R.anim.zoom_in);
+        Animation bounce = AnimationUtils.loadAnimation(this, R.anim.bounce);
+        Animation scaleOut = AnimationUtils.loadAnimation(this, R.anim.scale_out);
 
-        // Start animations
-        logo.startAnimation(zoomIn);
-        appName.startAnimation(fadeIn);
-        tagline.startAnimation(fadeIn);
+        // Start with fade-in
+        logoImage.startAnimation(fadeIn);
+        fadeIn.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) { }
 
-        // Delay for splash screen and navigate to main activity
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Start bounce animation after fade-in
+                logoImage.startAnimation(bounce);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) { }
+        });
+
+        bounce.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) { }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                // Start scale-out animation after bounce
+                logoImage.startAnimation(scaleOut);
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) { }
+        });
+
+        // Move to the next activity after the animations
         new Handler().postDelayed(() -> {
             Intent intent = new Intent(splash_screen.this, MainActivity.class);
             startActivity(intent);
             finish();
-        }, 3000); // 3 seconds delay
+        }, 3000); // Total duration: 3 seconds
     }
 }
